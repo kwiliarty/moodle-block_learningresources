@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+include_once('learningresources.class.php');
+
 class block_learningresources extends block_base {
 
     public function init() {
@@ -25,9 +27,11 @@ class block_learningresources extends block_base {
             return $this->content;
         }
 
+        $resources = new learningresourcelist;
+
         $this->content = new stdClass;
         $this->content->text = 'Learning resources';
-        $this->content->text .= $this->name;
+        $this->content->text .= $resources->rawlist;;
 
         return $this->content;
     }
