@@ -16,7 +16,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capbilities = array(
+$capabilities = array(
 
     'block/learningresources:myaddinstance' => array(
         'captype'      => 'write',
@@ -39,5 +39,5 @@ $capbilities = array(
         ),
 
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
-    )
+    ),
 );

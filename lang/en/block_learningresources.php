@@ -17,3 +17,4 @@
 $string['pluginname'] = 'Learning resources';
 $string['learningresources'] = 'Learning resources';
 $string['learningresources:addinstance'] = 'Add a Learning resources block';
+$string['learningresources:myaddinstance'] = 'Add a Learning resources block to the My Moodle Page';
