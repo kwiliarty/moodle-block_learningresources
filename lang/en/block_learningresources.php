@@ -15,5 +15,5 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 $string['pluginname'] = 'Learning resources';
-$string['syllabus'] = 'Learning resources';
-$string['syllabus:addinstance'] = 'Add a Learning resources block';
+$string['learningresources'] = 'Learning resources';
+$string['learningresources:addinstance'] = 'Add a Learning resources block';
