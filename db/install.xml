@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/learningresources/db" VERSION="20130712" COMMENT="XMLDB file for Moodle blocks/learningresources"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="block_learningresources" COMMENT="A block to display learning resources on Smith Moodle">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="linktext"/>
+        <FIELD NAME="linktext" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" COMMENT="Text to display as link to resource" PREVIOUS="id" NEXT="url"/>
+        <FIELD NAME="url" TYPE="char" LENGTH="150" NOTNULL="true" SEQUENCE="false" COMMENT="URL to resource" PREVIOUS="linktext" NEXT="notes"/>
+        <FIELD NAME="notes" TYPE="char" LENGTH="150" NOTNULL="true" SEQUENCE="false" COMMENT="Notes on learning resource" PREVIOUS="url" NEXT="defaultdisplay"/>
+        <FIELD NAME="defaultdisplay" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="Whether or not to show the resource by default" PREVIOUS="notes"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
