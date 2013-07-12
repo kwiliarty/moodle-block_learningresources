@@ -14,24 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-include_once('learningresource.class.php');
+class learningresource {
 
-class block_learningresources extends block_base {
+    public $name;
+    public $link;
+    public $linktext;
 
-    public function init() {
-        $this->title = get_string('learningresources', 'block_learningresources');
-    }
-
-    public function get_content() {
-        if ($this->content !== null) {
-            return $this->content;
-        }
-
-        $libhome = new learningresource('lib_home','http://www.smith.edu/libraries');
-        $this->content = new stdClass;
-        $this->content->text = 'Learning resources';
-        $this->content->text .= $libhome->linktext;
-
-        return $this->content;
-    }
+    function __construct($name,$link) {
+        $this->name = $name;
+        $this->link = $link;
+        $this->linktext = get_string($name, 'block_learningresources');
+    } 
 }

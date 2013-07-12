@@ -14,7 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-$string['pluginname'] = 'Learning resources';
 $string['learningresources'] = 'Learning resources';
 $string['learningresources:addinstance'] = 'Add a Learning resources block';
 $string['learningresources:myaddinstance'] = 'Add a Learning resources block to the My Moodle Page';
+$string['lib_home'] = 'Libraries Home Page';
+$string['pluginname'] = 'Learning resources';
