@@ -1,0 +1,4 @@
+.block_learningresources li {
+    padding-bottom: 0.5em;
+    list-style-image: url(http://eik.local/moodle-git/LAE_22_STABLE/moodle/blocks/learningresources/pix/link.png);
+}
