@@ -20,8 +20,8 @@ class learningresourcelist {
     public $resourcearray = array();
     public $rawlist;
 
-    public function __construct() {
-        $this->rawlist = get_config('learningresources', 'link_list');
+    public function __construct($rawlist) {
+        $this->rawlist = $rawlist;
         $rows = preg_split('/\n/', $this->rawlist);
         foreach ($rows as $key => $row) {
             $rowitems = explode('|', $row);
