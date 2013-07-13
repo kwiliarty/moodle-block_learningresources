@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-include_once('learningresources.class.php');
+require_once(dirname(__FILE__) . '/learningresources.class.php');
 
 class block_learningresources extends block_base {
 
