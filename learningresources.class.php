@@ -15,17 +15,20 @@
 //    'luna_db'      => 'http://www.smith.edu/imaging/luna.htm'
 //);
 
-class learningresourcelist {
+class lr_list {
 
-    public $resourcearray = array();
-    public $rawlist;
+    public $lr_array = array();
+    public $raw_list;
 
-    public function __construct($rawlist) {
-        $this->rawlist = $rawlist;
-        $rows = preg_split('/\n/', $this->rawlist);
+    public function __construct($raw_list) {
+        $this->rawlist = $raw_list;
+        $rows = preg_split('/\n/', $this->raw_list);
         foreach ($rows as $key => $row) {
-            $rowitems = explode('|', $row);
-            $this->resourcearray[$key] = $rowitems;
+            $row_items = explode('|', $row);
+            $this->lr_array[$key] = $row_items;
         }
+    }
+
+    public function get_html_list($lr_array) {
     }
 }
