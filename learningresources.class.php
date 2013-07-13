@@ -19,7 +19,8 @@ class lr_list {
 
     public $lr_array = array();
     public $raw_list;
-    public $html_array;
+    public $html_array = array();
+    public $html_list;
 
     public function __construct($raw_list) {
         $this->raw_list = $raw_list;
@@ -28,13 +29,21 @@ class lr_list {
             $row_items = explode('|', $row);
             $this->lr_array[$key] = $row_items;
         }
+        $this->html_array = $this->get_html_array();
+        $this->html_list = html_writer::alist($this->html_array);
     }
 
     public function get_html_array() {
         foreach ($this->lr_array as $key => $row) {
-            if ($row[2] != "show") { continue; }
+            // Not sure why, but a simple test for equality failed, maybe line ending?
+            // The regular expression test gets the desired behavior
+            if (!(preg_match('/show/', $row[2]))) { continue; }
             $this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
         }
         return $this->html_array;
+    }
+
+    public function get_html_list() {
+        return $this->html_list;
     }
 }
