@@ -31,9 +31,7 @@ class block_learningresources extends block_base {
         $default_lr_array = new lr_list($raw_defaults);
 
         $this->content = new stdClass;
-        $this->content->text = 'Learning resources';
-        $this->content->text .= $default_lr_array->raw_list;;
-        $this->content->text .= $default_lr_array->get_html_list();
+        $this->content->text = $default_lr_array->get_html_list();
 
         return $this->content;
     }
