@@ -19,9 +19,10 @@ class lr_list {
 
     public $lr_array = array();
     public $raw_list;
+    public $html_array;
 
     public function __construct($raw_list) {
-        $this->rawlist = $raw_list;
+        $this->raw_list = $raw_list;
         $rows = preg_split('/\n/', $this->raw_list);
         foreach ($rows as $key => $row) {
             $row_items = explode('|', $row);
@@ -29,6 +30,11 @@ class lr_list {
         }
     }
 
-    public function get_html_list($lr_array) {
+    public function get_html_array() {
+        foreach ($this->lr_array as $key => $row) {
+            if ($row[2] != "show") { continue; }
+            $this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
+        }
+        return $this->html_array;
     }
 }
