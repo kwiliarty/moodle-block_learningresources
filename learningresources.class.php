@@ -6,8 +6,16 @@ class lr_list {
     public $raw_list;
     public $html_array = array();
     public $html_list;
+    public $link_target = 0;
 
     public function __construct($raw_list) {
+        $this->link_target = get_config('learningresources', 'new_window');
+        if ($this->link_target == 1) { $this->link_target = "_blank"; }
+        else { $this->link_target = "_self"; }
+//        echo "<pre>Debug: ";
+//        print_r($this->link_target);
+//        echo "</pre>";
+//        die();
         $this->raw_list = $raw_list;
         $rows = preg_split('/\n/', $this->raw_list);
         foreach ($rows as $key => $row) {
@@ -24,7 +32,7 @@ class lr_list {
             // The regular expression test gets the desired behavior
             if (!(preg_match('/show/', $row[2]))) { continue; }
             //$this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
-            $this->html_array[$key] = html_writer::link($row[1], $row[0]); 
+            $this->html_array[$key] = html_writer::link($row[1], $row[0], array('target'=>$this->link_target)); 
         }
         return $this->html_array;
     }
