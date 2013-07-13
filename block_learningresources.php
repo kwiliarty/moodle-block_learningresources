@@ -32,7 +32,7 @@ class block_learningresources extends block_base {
 
         $this->content = new stdClass;
         $this->content->text = 'Learning resources';
-        $this->content->text .= $resources->rawlist;;
+        $this->content->text .= $default_resourcearray->rawlist;;
 
         return $this->content;
     }
