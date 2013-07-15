@@ -6,6 +6,7 @@ class lr_list {
     public $raw_list;
     public $html_array = array();
     public $html_list;
+    public $keys = array('text', 'url', 'show', 'id', 'position');
     public $link_target = '';
 
     public function __construct($raw_list) {
@@ -21,7 +22,9 @@ class lr_list {
         foreach ($rows as $key => $row) {
             $row = rtrim($row);
             $row_items = explode('|', $row);
-            $this->lr_array[$row_items[3]] = $row_items;
+            array_push($row_items, $key);
+            $keys_and_values = array_combine($this->keys, $row_items);
+            $this->lr_array[$row_items[3]] = $keys_and_values;
         }
         $this->html_array = $this->get_html_array();
         $this->html_list = html_writer::alist($this->html_array);
@@ -31,9 +34,9 @@ class lr_list {
         foreach ($this->lr_array as $key => $row) {
             // Not sure why, but a simple test for equality failed, maybe line ending?
             // The regular expression test gets the desired behavior
-            if (!(preg_match('/show/', $row[2]))) { continue; }
+            if (!(preg_match('/show/', $row['show']))) { continue; }
             //$this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
-            $this->html_array[$key] = html_writer::link($row[1], $row[0], array('target'=>$this->link_target)); 
+            $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target)); 
         }
         return $this->html_array;
     }
