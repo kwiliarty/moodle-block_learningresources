@@ -27,7 +27,6 @@ class block_learningresources extends block_base {
             return $this->content;
         }
 
-        $raw_defaults = get_config('learningresources', 'link_list');
         $default_lr_array = new lr_list();
 
         $this->content = new stdClass;
