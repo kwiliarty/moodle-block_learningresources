@@ -13,8 +13,9 @@ class block_learningresources_edit_form extends block_edit_form {
 
         foreach ($lr_array as $lr) {
             $anchor = "<a href='" . $lr['url'] . "' target='_blank' >" . $lr['text'] . "</a>";
+            $fieldname = "config_" . $lr['id'];
             $mform->addElement('advcheckbox',
-                               $lr['id'],
+                               $fieldname,
                                $lr['id'],
                                $anchor);
         }

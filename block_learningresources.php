@@ -29,6 +29,7 @@ class block_learningresources extends block_base {
 
         $default_lr_array = new lr_list();
 
+        $this->config->apa = 1;
         $this->content = new stdClass;
         $this->content->text = $default_lr_array->get_html_list();
 
@@ -38,5 +39,4 @@ class block_learningresources extends block_base {
     public function has_config() {
         return true;
     }
-
 }
