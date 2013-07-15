@@ -2,9 +2,9 @@
 
 class lr_list {
 
-    public $lr_array = array();
-    public $raw_list; /* The list as stored in the settings */
-    public $html_array = array();
+    public $lr_array = array(); /* nested array of resources for manipulation into various formats */
+    public $raw_list; /* list as stored in the settings */
+    public $html_array = array(); /* array of html-formatted links to visible resources */
     public $html_list;
     public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
     public $link_target = '';
@@ -38,6 +38,8 @@ class lr_list {
             $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
 
+        $this->sort_lr_array();
+
         // build the array of html-formatted anchor tags
         $this->html_array = $this->get_html_array();
         $this->html_list = html_writer::alist($this->html_array);
@@ -58,5 +60,16 @@ class lr_list {
 
     public function get_html_list() {
         return $this->html_list;
+    }
+
+    public function sort_lr_array() {
+        uasort($this->lr_array, array($this, 'my_cmp'));
+    }
+
+    public function my_cmp($a, $b) {
+        if ($a['position'] == $b['position']) {
+            return 0;
+        }
+        return ($a['position'] < $b['position']) ? -1 : 1;
     }
 }
