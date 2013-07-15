@@ -35,7 +35,7 @@ class lr_list {
             // combine the keys with the rows to create an associative array
             $keys_and_values = array_combine($this->keys, $row_items);
             // add each array to the bigger list array using the ID as a key
-            $this->lr_array[$row_items[3]] = $keys_and_values;
+            $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
         $this->html_array = $this->get_html_array();
         $this->html_list = html_writer::alist($this->html_array);
