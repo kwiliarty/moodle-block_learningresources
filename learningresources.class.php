@@ -9,7 +9,8 @@ class lr_list {
     public $keys = array('text', 'url', 'show', 'id', 'position');
     public $link_target = '';
 
-    public function __construct($raw_list) {
+    public function __construct() {
+        $this->raw_list = get_config('learningresources', 'link_list');
         $this->link_target = get_config('learningresources', 'new_window');
         if ($this->link_target == 1) { $this->link_target = "_blank"; }
         else { $this->link_target = "_self"; }
@@ -17,7 +18,6 @@ class lr_list {
 //        print_r($this->link_target);
 //        echo "</pre>";
 //        die();
-        $this->raw_list = $raw_list;
         $rows = explode("\n", $this->raw_list);
         foreach ($rows as $key => $row) {
             $row = rtrim($row);
