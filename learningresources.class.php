@@ -27,7 +27,9 @@ class lr_list {
 
         // break each row into an array based on '|' separators
         foreach ($rows as $key => $row) {
-            // first get rid of newlines at end of each row
+            // ignore blank rows
+            if ($row == '') { continue; }
+            // get rid of newlines at end of each row
             $row = rtrim($row);
             // then split
             $row_items = explode('|', $row);
