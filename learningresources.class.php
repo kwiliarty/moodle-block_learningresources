@@ -31,7 +31,7 @@ class lr_list {
             $row = rtrim($row);
             // then split
             $row_items = explode('|', $row);
-            // add the numeric key at the end as a basis for ordering
+            // add the numeric key as a basis for ordering
             array_push($row_items, $key);
             // combine the keys with the rows to create an associative array
             $keys_and_values = array_combine($this->keys, $row_items);
@@ -48,9 +48,9 @@ class lr_list {
         return $this->lr_array;
     }
 
-    public function get_html_array() {
+    public function get_html_array($visible='visible') {
         foreach ($this->lr_array as $key => $row) {
-            if ($row['show'] != 'show') { continue; }
+            if (($visible=='visible') && ($row['show'] != 'show')) { continue; }
             //$this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
             $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target)); 
         }

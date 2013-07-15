@@ -6,13 +6,24 @@ class block_learningresources_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {
 
-        $default_lr_array = new lr_list();
+        $lr_resources = new lr_list();
+        $lr_array = $lr_resources->get_lr_array();
 
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block_learningresources'));
 
-        echo "<pre>Debug: ";
-        print_r($default_lr_array);
+        foreach ($lr_array as $lr) {
+            $anchor = "<a href='" . $lr['url'] . "' target='_blank' >" . $lr['text'] . "</a>";
+            $mform->addElement('advcheckbox',
+                               $lr['id'],
+                               $lr['id'],
+                               $anchor);
+        }
+
+        foreach ($lr_array as $lr) {
+        echo "<pre>Debug: Learning Resource";
+        print_r($lr);
         echo "</pre>";
+        }
 
     }
 }
