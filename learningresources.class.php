@@ -17,8 +17,9 @@ class lr_list {
 //        echo "</pre>";
 //        die();
         $this->raw_list = $raw_list;
-        $rows = preg_split('/\n/', $this->raw_list);
+        $rows = explode("\n", $this->raw_list);
         foreach ($rows as $key => $row) {
+            $row = rtrim($row);
             $row_items = explode('|', $row);
             $this->lr_array[$row_items[3]] = $row_items;
         }
