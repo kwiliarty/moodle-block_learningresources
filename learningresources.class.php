@@ -6,7 +6,7 @@ class lr_list {
     public $raw_list;
     public $html_array = array();
     public $html_list;
-    public $link_target = 0;
+    public $link_target = '';
 
     public function __construct($raw_list) {
         $this->link_target = get_config('learningresources', 'new_window');
@@ -20,7 +20,7 @@ class lr_list {
         $rows = preg_split('/\n/', $this->raw_list);
         foreach ($rows as $key => $row) {
             $row_items = explode('|', $row);
-            $this->lr_array[$key] = $row_items;
+            $this->lr_array[$row_items[3]] = $row_items;
         }
         $this->html_array = $this->get_html_array();
         $this->html_list = html_writer::alist($this->html_array);
