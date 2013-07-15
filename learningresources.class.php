@@ -32,9 +32,7 @@ class lr_list {
 
     public function get_html_array() {
         foreach ($this->lr_array as $key => $row) {
-            // Not sure why, but a simple test for equality failed, maybe line ending?
-            // The regular expression test gets the desired behavior
-            if (!(preg_match('/show/', $row['show']))) { continue; }
+            if ($row['show'] != 'show') { continue; }
             //$this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
             $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target)); 
         }
