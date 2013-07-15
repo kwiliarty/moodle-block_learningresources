@@ -20,13 +20,7 @@ class block_learningresources_edit_form extends block_edit_form {
                                $anchor,
                                null,
                                array('hide', 'show'));
+            $mform->setDefault($fieldname, $lr['show']);
         }
-
-        foreach ($lr_array as $lr) {
-        echo "<pre>Debug: Learning Resource";
-        print_r($lr);
-        echo "</pre>";
-        }
-
     }
 }
