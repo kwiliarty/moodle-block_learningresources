@@ -19,6 +19,6 @@ $string['learningresources'] = 'Learning resources';
 $string['learningresources:addinstance'] = 'Add a Learning resources block';
 $string['learningresources:myaddinstance'] = 'Add a Learning resources block to the My Moodle Page';
 $string['listsetting'] = 'List of learning resources';
-$string['listsettingdesc'] = 'Enter one link per line. Reorder as needed. Use the format: Display text|url|show/hide . Use "show" for the last element to have the item show by default; use "hide" to hide it by default.';
+$string['listsettingdesc'] = 'Enter one link per line. Reorder as needed. Use the format: <br />Display text|url|show/hide|ID <br />Use "show" for the third element to have the item show by default; use "hide" to hide it by default. The ID should be alphanumeric with no spaces.';
 $string['openlinkssetting'] = 'Open links in a new window';
 $string['pluginname'] = 'Learning Resources';
