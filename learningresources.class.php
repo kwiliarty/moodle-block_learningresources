@@ -37,8 +37,14 @@ class lr_list {
             // add each array to the bigger list array using the ID as a key
             $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
+
+        // build the array of html-formatted anchor tags
         $this->html_array = $this->get_html_array();
         $this->html_list = html_writer::alist($this->html_array);
+    }
+
+    public function get_lr_array() {
+        return $this->lr_array;
     }
 
     public function get_html_array() {
