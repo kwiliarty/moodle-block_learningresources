@@ -17,6 +17,7 @@ class lr_list {
 
         // get the anchor target preference
         $this->link_target = get_config('learningresources', 'new_window');
+
         // and set the target appropriately
         if ($this->link_target == 1) { $this->link_target = "_blank"; }
         else { $this->link_target = "_self"; }
@@ -38,11 +39,9 @@ class lr_list {
             $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
 
+        // make sure the arry is in order -- it should be anyway
         $this->sort_lr_array();
 
-        // build the array of html-formatted anchor tags
-        $this->html_array = $this->get_html_array();
-        $this->html_list = html_writer::alist($this->html_array);
     }
 
     public function get_lr_array() {
@@ -59,6 +58,8 @@ class lr_list {
     }
 
     public function get_html_list() {
+        $this->get_html_array();
+        $this->html_list = html_writer::alist($this->html_array);
         return $this->html_list;
     }
 
