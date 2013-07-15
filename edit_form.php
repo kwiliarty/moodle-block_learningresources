@@ -17,7 +17,9 @@ class block_learningresources_edit_form extends block_edit_form {
             $mform->addElement('advcheckbox',
                                $fieldname,
                                $lr['id'],
-                               $anchor);
+                               $anchor,
+                               null,
+                               array('hide', 'show'));
         }
 
         foreach ($lr_array as $lr) {

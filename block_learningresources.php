@@ -29,8 +29,13 @@ class block_learningresources extends block_base {
 
         $default_lr_array = new lr_list();
 
-        $this->config->apa = 1;
-        $default_lr_array->set_visibility('apa','hide');
+        $config = $this->config;
+        if ($config) {
+            foreach ($config as $key => $value) {
+                $default_lr_array->set_visibility($key, $value);
+            }
+        }
+
         $this->content = new stdClass;
         $this->content->text = $default_lr_array->get_html_list();
 
