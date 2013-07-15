@@ -2,12 +2,12 @@
 
 class lr_list {
 
-    public $lr_array = array(); /* nested array of resources for manipulation into various formats */
     public $raw_list; /* list as stored in the settings */
+    public $link_target = ''; /* link target preference as stored in the settings */
+    public $lr_array = array(); /* nested array of resources for manipulation into various formats */
     public $html_array = array(); /* array of html-formatted links to visible resources */
-    public $html_list;
+    public $html_list; /* visible resources formatted as an html list */
     public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
-    public $link_target = '';
 
     // build the learning resources object
     public function __construct() {
