@@ -48,6 +48,13 @@ class lr_list {
         return $this->lr_array;
     }
 
+    public function set_visibility($id, $show='show') {
+        if ($show != 'show') {
+            $show = 'hide';
+        }
+        $this->lr_array[$id]['show']=$show;
+    }
+
     public function get_html_array($visible='visible') {
         foreach ($this->lr_array as $key => $row) {
             if (($visible=='visible') && ($row['show'] != 'show')) { continue; }
