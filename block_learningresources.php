@@ -25,11 +25,17 @@ class block_learningresources extends block_base {
     public function get_content() {
 
         $default_lr_array = new lr_list();
+//        echo "<pre>Debug: ";
+//        print_r($default_lr_array);
+//        echo "</pre>";
+//        die();
 
         $config = $this->config;
         if ($config) {
             foreach ($config as $key => $value) {
-                $default_lr_array->set_visibility($key, $value);
+                if (array_key_exists($key, $default_lr_array->lr_array)) {
+                    $default_lr_array->set_visibility($key, $value);
+                }
             }
         }
 
