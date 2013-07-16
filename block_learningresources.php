@@ -23,9 +23,6 @@ class block_learningresources extends block_base {
     }
         
     public function get_content() {
-        if ($this->content !== null) {
-            return $this->content;
-        }
 
         $default_lr_array = new lr_list();
 
