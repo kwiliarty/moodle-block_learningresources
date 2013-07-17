@@ -18,41 +18,45 @@ require_once(dirname(__FILE__) . '/learningresources.class.php');
 
 class block_learningresources extends block_base {
 
-    // title for the block on the course page
+    /* title for the block on the course page
+     */
     public function init() {
         $this->title = get_string('learningresources', 'block_learningresources');
     }
         
-    // content for the block on the course page
+    /* content for the block on the course page
+     */
     public function get_content() {
 
-        // get the defaults
-        $default_lr_array = new lr_list();
-
-        // and get the instance settings
-        $config = $this->config;
-        // if there are instance settings
-        if ($config) {
-            // go through the list
-            foreach ($config as $key => $value) {
-                // if the setting corresponds to an item in the default list
-                if (array_key_exists($key, $default_lr_array->lr_array)) {
-                    // set the visibility in the list according to the instance preference
-                    $default_lr_array->set_visibility($key, $value);
+        /* get the default list of items
+         * get the instance settings
+         * if there are instance settings
+         * loop through the settings
+         * if a given setting matches an item in the defaults 
+         * (it might not -- if the defaults have changed)
+         * then modify the item's visibility according to the settings
+         */
+        $default_lr_array = new lr_list(); 
+        $config = $this->config; 
+        if ($config) { 
+            foreach ($config as $key => $value) { 
+                if (array_key_exists($key, $default_lr_array->lr_array)) { 
+                    $default_lr_array->set_visibility($key, $value); 
                 }
             }
         }
 
-        // create the object to hold the content
+        /* create the object to hold the block's content
+         * assign the HTML list (with instance preferences) as the text of the content
+         */
         $this->content = new stdClass;
-
-        // assign the HTML list (with instance preferences) as the text of the content
         $this->content->text = $default_lr_array->get_html_list();
 
         return $this->content;
     }
 
-    // tells Moodle to look for global settings
+    /* tell Moodle to look for global settings
+     */
     public function has_config() {
         return true;
     }
