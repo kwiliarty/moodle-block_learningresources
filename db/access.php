@@ -16,6 +16,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/* standard block permissions */
+
 $capabilities = array(
 
     'block/learningresources:myaddinstance' => array(
