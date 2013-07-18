@@ -65,30 +65,30 @@ class block_learningresources_list {
             $this->link_target = "_self"; 
         }
         $rows = explode("\n", $this->raw_list);
-        foreach ($rows as $key => $row) {
-            $this->parse_row($key, $row);
-        }
+        $this->parse_rows($rows);
         $this->sort_lr_array();
     }
 
     /**
      * Parse each row of the raw list
      *
-     * ignore blank rows
+     * ignore blank or ill-formed rows
      * delete newlines and whitespace at the end of each row
      * split the row using the pipe as a separator
      * use the list of $keys as keys for the elements of each row
      * add each row to an array of rows, using the id of the row as the key
      */
-    public function parse_row($key, $row) {
-        if ($row == '') { 
-            continue; 
+    public function parse_rows($rows) {
+        foreach ($rows as $key => $row) {
+            $row = rtrim($row);
+            $row_items = explode('|', $row);
+            array_push($row_items, $key);
+            if (count($row_items) != count($this->keys)) { 
+                continue; 
+            }
+            $keys_and_values = array_combine($this->keys, $row_items);
+            $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
-        $row = rtrim($row);
-        $row_items = explode('|', $row);
-        array_push($row_items, $key);
-        $keys_and_values = array_combine($this->keys, $row_items);
-        $this->lr_array[$keys_and_values['id']] = $keys_and_values;
     }
 
     
