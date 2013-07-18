@@ -1,47 +1,93 @@
 <?php
 
+/**
+ * The learning resources list
+ *
+ * Includes the raw list and an articulated array
+ * with methods to modify particular settings,
+ * build relevant hyperlinks, and more.
+ */
 class block_learningresources_list {
 
-    public $raw_list; /* list as stored in the settings */
-    public $link_target = ''; /* link target preference as stored in the settings */
-    public $lr_array = array(); /* nested array of resources for manipulation into various formats */
-    public $html_array = array(); /* array of html-formatted links to visible resources */
-    public $html_list; /* visible resources formatted as an html list */
+    /**
+     * The raw, flat list of resources
+     *
+     * One resource per line
+     * Resource attributes are pipe-separated
+     */
+    public $raw_list; 
+
+    /**
+     * The "target" preference for all hyperlinks: "_blank" or "_self"
+     */
+    public $link_target = '';
+
+    /**
+     * An array of resources parsed from the raw list
+     */
+    public $lr_array = array();
+
+    /**
+     * An array of HTML-formatted links to resources
+     *
+     * By default the list includes only the links flagged as visible
+     * after the defaults and instance config have applied
+     */
+    public $html_array = array();
+
+    /**
+     * An HTML-formatted (unordered) list of the visible resource links
+     */
+    public $html_list;
+
+    /**
+     * The array of keys to apply to the attributes of a resource from the raw list
+     */
     public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
 
-    // build the learning resources object
+    /** 
+     * Build the learning resources object
+     *
+     * get the raw list from the global settings
+     * get the target preference from the global settings
+     * set the link_target property according to the global setting
+     * break the raw list into an array of rows
+     * break each row into an array of attributes for the resource
+     * make sure the array is in the desired order
+     */
     public function __construct() {
         
-        // get the raw list from the database
         $this->raw_list = get_config('learningresources', 'link_list');
-
-        // get the anchor target preference
         $this->link_target = get_config('learningresources', 'new_window');
+        if ($this->link_target == 1) { 
+            $this->link_target = "_blank"; 
+        }
+        else { 
+            $this->link_target = "_self"; 
+        }
 
-        // and set the target appropriately
-        if ($this->link_target == 1) { $this->link_target = "_blank"; }
-        else { $this->link_target = "_self"; }
-
-        // break the raw list into rows based on linux newlines
         $rows = explode("\n", $this->raw_list);
 
-        // break each row into an array based on '|' separators
+        /**
+         * Parse each row of the raw list
+         *
+         * ignore blank rows
+         * delete newlines and whitespace at the end of each row
+         * split the row using the pipe as a separator
+         * use the list of $keys as keys for the elements of each row
+         * add each row to an array of rows, using the id of the row as the key
+         */
         foreach ($rows as $key => $row) {
-            // ignore blank rows
-            if ($row == '') { continue; }
-            // get rid of newlines at end of each row
+            if ($row == '') { 
+                continue; 
+            }
             $row = rtrim($row);
-            // then split
             $row_items = explode('|', $row);
-            // add the numeric key as a basis for ordering
             array_push($row_items, $key);
-            // combine the keys with the rows to create an associative array
             $keys_and_values = array_combine($this->keys, $row_items);
-            // add each array to the bigger list array using the ID as a key
             $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
 
-        // make sure the arry is in order -- it should be anyway
         $this->sort_lr_array();
 
     }
