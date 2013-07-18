@@ -14,28 +14,40 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Require the file that defines the learning resources list object
+ */
 require_once(dirname(__FILE__) . '/learningresources.class.php');
 
+/**
+ * Define the class for the learning resources block
+ *
+ * Extend the block_base class. Moodle provides lots of magic.
+ */
 class block_learningresources extends block_base {
 
-    /* title for the block on the course page
+    /**
+     * Title for the block on the course page
      */
     public function init() {
         $this->title = get_string('learningresources', 'block_learningresources');
     }
         
-    /* content for the block on the course page
+    /** 
+     * Content for the block on the course page
+     * 
+     * get the default list of items
+     * get the instance settings
+     * if there are instance settings
+     * loop through the settings
+     * if a given setting matches an item in the default list
+     * (it might not -- if the defaults have changed, for instance)
+     * then modify the item's visibility according to the settings
+     * create the object to hold the block's content
+     * assign the HTML list (with instance preferences) as the text of the content
      */
     public function get_content() {
 
-        /* get the default list of items
-         * get the instance settings
-         * if there are instance settings
-         * loop through the settings
-         * if a given setting matches an item in the defaults 
-         * (it might not -- if the defaults have changed)
-         * then modify the item's visibility according to the settings
-         */
         $default_lr_array = new block_learningresources_list(); 
         $config = $this->config; 
         if ($config) { 
@@ -46,16 +58,14 @@ class block_learningresources extends block_base {
             }
         }
 
-        /* create the object to hold the block's content
-         * assign the HTML list (with instance preferences) as the text of the content
-         */
         $this->content = new stdClass;
         $this->content->text = $default_lr_array->get_html_list();
 
         return $this->content;
     }
 
-    /* tell Moodle to look for global settings
+    /** 
+     * tell Moodle to look for global settings
      */
     public function has_config() {
         return true;
