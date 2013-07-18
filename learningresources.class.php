@@ -92,10 +92,16 @@ class block_learningresources_list {
     }
 
     
+    /**
+     * return the articulated array of learning resources
+     */
     public function get_lr_array() {
         return $this->lr_array;
     }
 
+    /**
+     * set the visibility of an individual item in the array
+     */
     public function set_visibility($id, $show='show') {
         if ($show != 'show') {
             $show = 'hide';
@@ -103,6 +109,9 @@ class block_learningresources_list {
         $this->lr_array[$id]['show']=$show;
     }
 
+    /**
+     * return the array of HTML formatted links to resources
+     */
     public function get_html_array($visible='visible') {
         foreach ($this->lr_array as $key => $row) {
             if (($visible=='visible') && ($row['show'] != 'show')) { continue; }
@@ -112,16 +121,25 @@ class block_learningresources_list {
         return $this->html_array;
     }
 
+    /**
+     * return the unordered list of links to resources
+     */
     public function get_html_list() {
         $this->get_html_array();
         $this->html_list = html_writer::alist($this->html_array);
         return $this->html_list;
     }
 
+    /**
+     * sort the articulated array of resources according to the custom function
+     */
     public function sort_lr_array() {
         uasort($this->lr_array, array($this, 'my_cmp'));
     }
 
+    /**
+     * compare the value of two resources 'position' attributes
+     */
     public function my_cmp($a, $b) {
         if ($a['position'] == $b['position']) {
             return 0;
