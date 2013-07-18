@@ -1,6 +1,6 @@
 <?php
 
-class lr_list {
+class block_learningresources_list {
 
     public $raw_list; /* list as stored in the settings */
     public $link_target = ''; /* link target preference as stored in the settings */

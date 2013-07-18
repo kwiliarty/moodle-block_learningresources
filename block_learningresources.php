@@ -36,7 +36,7 @@ class block_learningresources extends block_base {
          * (it might not -- if the defaults have changed)
          * then modify the item's visibility according to the settings
          */
-        $default_lr_array = new lr_list(); 
+        $default_lr_array = new block_learningresources_list(); 
         $config = $this->config; 
         if ($config) { 
             foreach ($config as $key => $value) { 

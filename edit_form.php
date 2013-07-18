@@ -10,7 +10,7 @@ class block_learningresources_edit_form extends block_edit_form {
         /* get the list of default items
          * create variable to hold the nested array of items and attributes
          */
-        $lr_resources = new lr_list();
+        $lr_resources = new block_learningresources_list();
         $lr_array = $lr_resources->get_lr_array();
 
         /* title for the checkbox section
