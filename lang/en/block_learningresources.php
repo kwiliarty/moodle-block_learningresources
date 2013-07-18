@@ -14,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Display a list of resources in a block
+ *
+ * @package block_learningresources
+ * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 $string['blocksettings'] = 'Show or hide individual links';
 $string['learningresources'] = 'Learning resources';
 $string['learningresources:addinstance'] = 'Add a Learning resources block';

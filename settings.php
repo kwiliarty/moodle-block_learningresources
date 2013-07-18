@@ -19,6 +19,7 @@
  *
  * @package block_learningresources
  * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /* global setting: link target */

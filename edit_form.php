@@ -19,6 +19,7 @@
  *
  * @package block_learningresources
  * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -31,6 +32,9 @@ require_once(dirname(__FILE__) . '/learningresources.class.php');
  *
  * Extends the native block_edit_form through which Moodle
  * provides lots of magic.
+ *
+ * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_learningresources_edit_form extends block_edit_form {
 
@@ -45,6 +49,8 @@ class block_learningresources_edit_form extends block_edit_form {
      * format a fieldname for a corresponding checkbox, must begin with "config_"
      * Moodle will apply instance preferences if they have been set
      * Otherwise use the visibility preference for the item from the default list
+     *
+     * @param MoodleQuickForm $mform form object for block configuration
      */
     protected function specific_definition($mform) {
 

@@ -28,6 +28,9 @@
  * Includes the raw list and an articulated array
  * with methods to modify particular settings,
  * build relevant hyperlinks, and more.
+ *
+ * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_learningresources_list {
 
@@ -36,16 +39,22 @@ class block_learningresources_list {
      *
      * One resource per line
      * Resource attributes are pipe-separated
+     *
+     * @var string
      */
     public $raw_list;
 
     /**
      * The "target" preference for all hyperlinks: "_blank" or "_self"
+     *
+     * @var string
      */
     public $link_target = '';
 
     /**
      * An array of resources parsed from the raw list
+     *
+     * @var array
      */
     public $lr_array = array();
 
@@ -54,16 +63,22 @@ class block_learningresources_list {
      *
      * By default the list includes only the links flagged as visible
      * after the defaults and instance config have applied
+     *
+     * @var array
      */
     public $html_array = array();
 
     /**
      * An HTML-formatted (unordered) list of the visible resource links
+     *
+     * @var string
      */
     public $html_list;
 
     /**
      * The array of keys to apply to the attributes of a resource from the raw list
+     *
+     * @var array
      */
     public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
 
@@ -98,6 +113,8 @@ class block_learningresources_list {
      * split the row using the pipe as a separator
      * use the list of $keys as keys for the elements of each row
      * add each row to an array of rows, using the id of the row as the key
+     *
+     * @param array $rows The array of rows from the raw list
      */
     public function parse_rows($rows) {
         foreach ($rows as $key => $row) {
@@ -121,6 +138,9 @@ class block_learningresources_list {
 
     /**
      * set the visibility of an individual item in the array
+     *
+     * @param string $id A unique id for each resource
+     * @param string $show Should be 'show' or 'hide' to indicate default preference
      */
     public function set_visibility($id, $show='show') {
         if ($show != 'show') {
@@ -131,6 +151,8 @@ class block_learningresources_list {
 
     /**
      * return the array of HTML formatted links to resources
+     *
+     * @param string $visible Defaults to 'visible'
      */
     public function get_html_array($visible='visible') {
         foreach ($this->lr_array as $key => $row) {
@@ -160,6 +182,9 @@ class block_learningresources_list {
 
     /**
      * compare the value of two resources 'position' attributes
+     *
+     * @param array $a first array to compare
+     * @param array $b second array to compare
      */
     public function my_cmp($a, $b) {
         if ($a['position'] == $b['position']) {
