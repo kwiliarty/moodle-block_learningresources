@@ -1,4 +1,26 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Display a list of resources in a block
+ *
+ * @package block_learningresources
+ * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 /**
  * The learning resources list
@@ -15,7 +37,7 @@ class block_learningresources_list {
      * One resource per line
      * Resource attributes are pipe-separated
      */
-    public $raw_list; 
+    public $raw_list;
 
     /**
      * The "target" preference for all hyperlinks: "_blank" or "_self"
@@ -45,7 +67,7 @@ class block_learningresources_list {
      */
     public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
 
-    /** 
+    /**
      * Build the learning resources object
      *
      * get the raw list from the global settings
@@ -58,11 +80,10 @@ class block_learningresources_list {
     public function __construct() {
         $this->raw_list = get_config('learningresources', 'link_list');
         $this->link_target = get_config('learningresources', 'new_window');
-        if ($this->link_target == 1) { 
-            $this->link_target = "_blank"; 
-        }
-        else { 
-            $this->link_target = "_self"; 
+        if ($this->link_target == 1) {
+            $this->link_target = "_blank";
+        } else {
+            $this->link_target = "_self";
         }
         $rows = explode("\n", $this->raw_list);
         $this->parse_rows($rows);
@@ -83,15 +104,14 @@ class block_learningresources_list {
             $row = rtrim($row);
             $row_items = explode('|', $row);
             array_push($row_items, $key);
-            if (count($row_items) != count($this->keys)) { 
-                continue; 
+            if (count($row_items) != count($this->keys)) {
+                continue;
             }
             $keys_and_values = array_combine($this->keys, $row_items);
             $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
     }
 
-    
     /**
      * return the articulated array of learning resources
      */
@@ -114,9 +134,10 @@ class block_learningresources_list {
      */
     public function get_html_array($visible='visible') {
         foreach ($this->lr_array as $key => $row) {
-            if (($visible=='visible') && ($row['show'] != 'show')) { continue; }
-            //$this->html_array[$key] = "<a href='$row[1]'>$row[0]</a>"; 
-            $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target)); 
+            if (($visible=='visible') && ($row['show'] != 'show')) {
+                continue;
+            }
+            $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target));
         }
         return $this->html_array;
     }

@@ -15,6 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Display a list of resources in a block
+ *
+ * @package block_learningresources
+ * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+/**
  * Require the file that defines the learning resources list object
  */
 require_once(dirname(__FILE__) . '/learningresources.class.php');
@@ -23,6 +31,8 @@ require_once(dirname(__FILE__) . '/learningresources.class.php');
  * Define the class for the learning resources block
  *
  * Extend the block_base class. Moodle provides lots of magic.
+ * @copyright 2013 Smith College ITS
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_learningresources extends block_base {
 
@@ -32,10 +42,10 @@ class block_learningresources extends block_base {
     public function init() {
         $this->title = get_string('learningresources', 'block_learningresources');
     }
-        
-    /** 
+
+    /**
      * Content for the block on the course page
-     * 
+     *
      * get the default list of items
      * get the instance settings
      * if there are instance settings
@@ -48,12 +58,12 @@ class block_learningresources extends block_base {
      */
     public function get_content() {
 
-        $default_lr_array = new block_learningresources_list(); 
-        $config = $this->config; 
-        if ($config) { 
-            foreach ($config as $key => $value) { 
-                if (array_key_exists($key, $default_lr_array->lr_array)) { 
-                    $default_lr_array->set_visibility($key, $value); 
+        $default_lr_array = new block_learningresources_list();
+        $config = $this->config;
+        if ($config) {
+            foreach ($config as $key => $value) {
+                if (array_key_exists($key, $default_lr_array->lr_array)) {
+                    $default_lr_array->set_visibility($key, $value);
                 }
             }
         }
@@ -64,7 +74,7 @@ class block_learningresources extends block_base {
         return $this->content;
     }
 
-    /** 
+    /**
      * tell Moodle to look for global settings
      */
     public function has_config() {
