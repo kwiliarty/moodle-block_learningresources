@@ -80,7 +80,7 @@ class block_learningresources_list {
      *
      * @var array
      */
-    public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
+    public $keys = array('text', 'url', 'show', 'id', 'position', 'html'); /* keys to apply to rows */
 
     /**
      * Build the learning resources object
@@ -103,6 +103,10 @@ class block_learningresources_list {
         $rows = explode("\n", $this->raw_list);
         $this->parse_rows($rows);
         $this->sort_lr_array();
+        echo "<pre>Debug: ";
+        print_r($this);
+        echo "</pre>";
+        die();
     }
 
     /**
@@ -110,6 +114,8 @@ class block_learningresources_list {
      *
      * ignore blank or ill-formed rows
      * delete newlines and whitespace at the end of each row
+     * add a 'position' to each row for sorting
+     * add the relevant HTML to each row
      * split the row using the pipe as a separator
      * use the list of $keys as keys for the elements of each row
      * add each row to an array of rows, using the id of the row as the key
@@ -121,6 +127,8 @@ class block_learningresources_list {
             $row = rtrim($row);
             $row_items = explode('|', $row);
             array_push($row_items, $key);
+            $html = html_writer::link($row_items[1], $row_items[0], array('target'=>$this->link_target));
+            array_push($row_items, $html);
             if (count($row_items) != count($this->keys)) {
                 continue;
             }
