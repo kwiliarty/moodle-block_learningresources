@@ -103,10 +103,6 @@ class block_learningresources_list {
         $rows = explode("\n", $this->raw_list);
         $this->parse_rows($rows);
         $this->sort_lr_array();
-        echo "<pre>Debug: ";
-        print_r($this);
-        echo "</pre>";
-        die();
     }
 
     /**
@@ -167,7 +163,7 @@ class block_learningresources_list {
             if (($visible=='visible') && ($row['show'] != 'show')) {
                 continue;
             }
-            $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target));
+            $this->html_array[$key] = $row['html'];
         }
         return $this->html_array;
     }
