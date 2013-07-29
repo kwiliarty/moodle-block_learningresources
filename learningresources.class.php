@@ -128,7 +128,8 @@ class block_learningresources_list {
             }
             $k_v = array_combine($this->keys, $row_items);
             if (substr($k_v['id'], 0, 6) == 'search') {
-                $k_v['html'] = 'Working';
+                $input = html_writer::empty_tag('input', array('type'=>'text', 'name'=>$k_v['id'], 'value'=>$k_v['text']));
+                $k_v['html'] = $input;
             }
             else {
                 $k_v['html'] = html_writer::link($k_v['url'], $k_v['text'], array('target'=>$this->link_target));
