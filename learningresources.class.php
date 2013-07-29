@@ -80,7 +80,7 @@ class block_learningresources_list {
      *
      * @var array
      */
-    public $keys = array('text', 'url', 'show', 'id', 'position', 'html'); /* keys to apply to rows */
+    public $keys = array('text', 'url', 'show', 'id', 'position'); /* keys to apply to rows */
 
     /**
      * Build the learning resources object
@@ -123,12 +123,11 @@ class block_learningresources_list {
             $row = rtrim($row);
             $row_items = explode('|', $row);
             array_push($row_items, $key);
-            $html = html_writer::link($row_items[1], $row_items[0], array('target'=>$this->link_target));
-            array_push($row_items, $html);
             if (count($row_items) != count($this->keys)) {
                 continue;
             }
             $keys_and_values = array_combine($this->keys, $row_items);
+            $keys_and_values['html'] = html_writer::link($keys_and_values['url'], $keys_and_values['text'], array('target'=>$this->link_target));
             $this->lr_array[$keys_and_values['id']] = $keys_and_values;
         }
     }
