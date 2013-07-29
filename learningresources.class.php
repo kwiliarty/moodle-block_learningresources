@@ -126,9 +126,9 @@ class block_learningresources_list {
             if (count($row_items) != count($this->keys)) {
                 continue;
             }
-            $keys_and_values = array_combine($this->keys, $row_items);
-            $keys_and_values['html'] = html_writer::link($keys_and_values['url'], $keys_and_values['text'], array('target'=>$this->link_target));
-            $this->lr_array[$keys_and_values['id']] = $keys_and_values;
+            $k_v = array_combine($this->keys, $row_items);
+            $k_v['html'] = html_writer::link($k_v['url'], $k_v['text'], array('target'=>$this->link_target));
+            $this->lr_array[$k_v['id']] = $k_v;
         }
     }
 
