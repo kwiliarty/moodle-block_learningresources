@@ -60,7 +60,7 @@ class block_learningresources_edit_form extends block_edit_form {
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block_learningresources'));
 
         foreach ($lr_array as $lr) {
-            $anchor = html_writer::link($lr['url'], $lr['text'], array('target'=>'_blank'));
+            $anchor = $lr['html'];
             $fieldname = "config_" . $lr['id'];
             $mform->addElement('advcheckbox', /* allow unchecked box to send a value */
                                $fieldname,
