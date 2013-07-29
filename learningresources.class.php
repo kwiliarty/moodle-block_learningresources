@@ -127,7 +127,12 @@ class block_learningresources_list {
                 continue;
             }
             $k_v = array_combine($this->keys, $row_items);
-            $k_v['html'] = html_writer::link($k_v['url'], $k_v['text'], array('target'=>$this->link_target));
+            if (substr($k_v['id'], 0, 6) == 'search') {
+                $k_v['html'] = 'Working';
+            }
+            else {
+                $k_v['html'] = html_writer::link($k_v['url'], $k_v['text'], array('target'=>$this->link_target));
+            }
             $this->lr_array[$k_v['id']] = $k_v;
         }
     }
