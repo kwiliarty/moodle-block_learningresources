@@ -159,8 +159,6 @@ class block_learningresources_list {
             if (($visible=='visible') && ($row['show'] != 'show')) {
                 continue;
             }
-            if (substr($row['id'], 0, 6) == 'search') {
-            }
             $this->html_array[$key] = html_writer::link($row['url'], $row['text'], array('target'=>$this->link_target));
         }
         return $this->html_array;
