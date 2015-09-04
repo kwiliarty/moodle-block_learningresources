@@ -24,3 +24,4 @@
 
 $plugin->version = 2013071201;
 $plugin->requires = 2010112400;
+$plugin->component = 'block_learningresources';
